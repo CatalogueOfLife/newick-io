@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 public abstract class Node<T extends Node<T>> {
   private static final String WS_REPLACEMENT = "_";
   static final Pattern QUOTE = Pattern.compile("'");
+  private static final Pattern WHITESPACE = Pattern.compile("\\s");
   private static final Pattern RESERVED = Pattern.compile("[()\\[\\],:;\\s']");
 
   private String label;
@@ -97,6 +98,11 @@ public abstract class Node<T extends Node<T>> {
       // need for quoting?
       if (RESERVED.matcher(value).find()) {
         return "'" + QUOTE.matcher(value).replaceAll("''") + "'";
+      } else {
+        var ws = WHITESPACE.matcher(value);
+        if (ws.find()) {
+          return ws.replaceAll(WS_REPLACEMENT);
+        }
       }
       return value;
     }
