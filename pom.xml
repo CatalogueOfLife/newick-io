@@ -16,11 +16,7 @@
     <developerConnection>scm:git:git@github.com:CatalogueOfLife/newick-io.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-
-  <prerequisites>
-    <maven>${minimumMavenVersion}</maven>
-  </prerequisites>
-
+  
   <properties>
     <!-- build settings -->
     <minimumMavenVersion>3.3</minimumMavenVersion>
