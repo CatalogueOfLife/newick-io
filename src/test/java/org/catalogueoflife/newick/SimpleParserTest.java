@@ -33,7 +33,4 @@ public class SimpleParserTest extends ParserTestBase{
     return new SimpleParser(in);
   }
 
-  String norm(String x) {
-    return x.replaceAll("\\s+", "");
-  }
 }

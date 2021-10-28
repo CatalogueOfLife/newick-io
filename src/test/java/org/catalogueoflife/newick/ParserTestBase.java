@@ -12,7 +12,7 @@ public abstract class ParserTestBase {
 
   @Test
   public void testTreeWithoutComments() throws IOException {
-    for (int i=1; i<=8; i++) {
+    for (int i=1; i<=6; i++) {
       System.out.println("\n *** TREE "+i+" ***");
       String file = "/trees/tree"+i+".txt";
       final String expected = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(file)))
@@ -30,7 +30,9 @@ public abstract class ParserTestBase {
     }
   }
 
-  String norm(String x) {
-    return x.replaceAll("\\s+", "");
+  public static String norm(String x) {
+    var x2 = x.replaceAll("\\s+", "")
+            .replaceAll(",", ",\n");
+    return x2;
   }
 }
