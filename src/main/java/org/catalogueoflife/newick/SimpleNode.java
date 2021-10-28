@@ -2,10 +2,12 @@ package org.catalogueoflife.newick;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class SimpleNode extends Node<SimpleNode> {
+  private static final Pattern RESERVED_IN_COMMENTS = Pattern.compile("[\\[\\]']");
+
   private String comment;
 
   public String getComment() {
@@ -20,9 +22,17 @@ public class SimpleNode extends Node<SimpleNode> {
   protected void writeComments(Writer w) throws IOException {
     if (comment != null) {
       w.append("[");
-      w.append(escape(comment));
+      w.append(escapeComment(comment));
       w.append("]");
     }
+  }
+
+  private static String escapeComment(String value) {
+    // need for quoting?
+    if (RESERVED_IN_COMMENTS.matcher(value).find()) {
+      return "'" + Node.QUOTE.matcher(value).replaceAll("''") + "'";
+    }
+    return value;
   }
 
   @Override

@@ -33,9 +33,11 @@ import java.util.stream.Collectors;
  *
  * See also http://www.phylosoft.org/NHX/
  */
-public class NHXNode extends XNode {
+public class NHXNode extends XNode<NHXNode> {
 
   private enum KEY {
+    S,
+    T,
     GN,
     AC,
     ND,
@@ -44,8 +46,6 @@ public class NHXNode extends XNode {
     E,
     Fu,
     DS,
-    S,
-    T,
     W,
     C,
     Co,
@@ -54,28 +54,6 @@ public class NHXNode extends XNode {
     O,
     SN,
     SO;
-  }
-  public enum EventType {
-    DUPLICATION('T'),
-    SPECIATION('F'),
-    UNKNOWN('?');
-
-    public final char code;
-
-    EventType(char code) {
-      this.code = code;
-    }
-
-    public static EventType parse(String value) {
-      if (value != null && value.length() == 1) {
-        for (var t : values()) {
-          if (value.charAt(0) == t.code) {
-            return t;
-          }
-        }
-      }
-      return null;
-    }
   }
 
   /**
@@ -162,7 +140,7 @@ public class NHXNode extends XNode {
   private String sequenceAccession;
   private String nodeIdentifier;
   private Float confidence;
-  private EventType event;
+  private Character event;
   private String ecNumber;
   private String function;
   private DomainStructure domainStructure;
@@ -209,11 +187,11 @@ public class NHXNode extends XNode {
     this.confidence = confidence;
   }
 
-  public EventType getEvent() {
+  public Character getEvent() {
     return event;
   }
 
-  public void setEvent(EventType event) {
+  public void setEvent(Character event) {
     this.event = event;
   }
 
@@ -336,7 +314,7 @@ public class NHXNode extends XNode {
       case "T": return obj2str(taxonomyID);
       case "W": return obj2str(width);
       case "C": return obj2str(color);
-      case "Co": return collapse ? "Y" : "N";
+      case "Co": return collapse ? "Y" : null;
       case "XB": return customBranch;
       case "XN": return customNode;
       case "O": return obj2str(orthologous);
@@ -353,7 +331,7 @@ public class NHXNode extends XNode {
       case "AC": sequenceAccession = value; break;
       case "ND": nodeIdentifier = value; break;
       case "B": confidence = value == null ? null : Float.parseFloat(value); break;
-      case "D": event = value == null ? null : EventType.parse(value); break;
+      case "D": event = value == null || value.length() != 1 ? null : value.charAt(0); break;
       case "E": ecNumber = value; break;
       case "Fu": function = value; break;
       case "DS": domainStructure = value == null ? null : new DomainStructure(value); break;

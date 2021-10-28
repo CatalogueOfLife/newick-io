@@ -28,7 +28,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- Dependency versions -->
-    <antlr.version>4.9.2</antlr.version>
     <junit.version>4.13.2</junit.version>
     <slf4j.version>1.7.24</slf4j.version>
     <logback.version>1.2.3</logback.version>
@@ -169,24 +168,6 @@
             <tagNameFormat>${project.artifactId}-@{project.version}</tagNameFormat>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.antlr</groupId>
-          <artifactId>antlr4-maven-plugin</artifactId>
-          <version>${antlr.version}</version>
-          <configuration>
-            <visitor>true</visitor>
-            <listener>true</listener>
-          </configuration>
-          <executions>
-            <execution>
-              <id>antlr-generate</id>
-              <phase>generate-sources</phase>
-              <goals>
-                <goal>antlr4</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
       </plugins>
   </build>
 
@@ -196,17 +177,6 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
-    </dependency>
-    <!-- Other -->
-    <dependency>
-      <groupId>org.antlr</groupId>
-      <artifactId>antlr4</artifactId>
-      <version>${antlr.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.antlr</groupId>
-      <artifactId>antlr4-runtime</artifactId>
-      <version>${antlr.version}</version>
     </dependency>
     <!-- Test -->
     <dependency>

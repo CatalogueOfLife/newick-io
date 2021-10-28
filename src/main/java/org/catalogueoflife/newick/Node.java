@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public abstract class Node<T extends Node<T>> {
   private static final String WS_REPLACEMENT = "_";
-  private static final Pattern QUOTE = Pattern.compile("'");
+  static final Pattern QUOTE = Pattern.compile("'");
   private static final Pattern RESERVED = Pattern.compile("[()\\[\\],:;\\s']");
 
   private String label;

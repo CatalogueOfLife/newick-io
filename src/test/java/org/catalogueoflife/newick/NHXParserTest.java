@@ -15,10 +15,18 @@ import static org.junit.Assert.*;
 public class NHXParserTest {
 
   @Test
-  public void testParse() throws IOException {
-    for (int i=1; i<=8; i++) {
-      System.out.println("\n *** TREE "+i+" ***");
-      String file = "/trees/tree"+i+".txt";
+  public void testComments() throws IOException {
+    NHXNode n = new NHXNode();
+    NHXParser.parseComments("&&NHX:S=human:E=1.1.1.1", n);
+    assertEquals("human", n.getSpeciesName());
+    assertEquals("1.1.1.1", n.getEcNumber());
+  }
+
+  @Test
+  public void testNHX() throws IOException {
+    for (int i=1; i<=1; i++) {
+      System.out.println("\n *** NHX "+i+" ***");
+      String file = "/trees/nhx"+i+".txt";
       final String expected = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(file)))
           .lines().collect(Collectors.joining("\n"));;
       //System.out.println(expected);
@@ -30,10 +38,11 @@ public class NHXParserTest {
       //System.out.println(writer);
 
       Assert.assertEquals(norm(expected), norm(writer.toString()));
+      System.out.println("OK");
     }
   }
 
   String norm(String x) {
-    return x.replaceAll("\\s+", "").replaceAll(",", ",\n");
+    return x.replaceAll("\\s+", "");
   }
 }
