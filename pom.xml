@@ -16,6 +16,7 @@
     <developerConnection>scm:git:git@github.com:CatalogueOfLife/newick-io.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
+
   
   <properties>
     <!-- build settings -->
