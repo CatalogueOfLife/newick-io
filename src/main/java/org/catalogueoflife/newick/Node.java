@@ -8,13 +8,12 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public abstract class Node<T extends Node<T>> {
-  private static final Pattern WHITESPACE = Pattern.compile("\\s");
   private static final String WS_REPLACEMENT = "_";
   private static final Pattern QUOTE = Pattern.compile("'");
-  private static final Pattern RESERVED = Pattern.compile("[()\\[\\],:;']");
+  private static final Pattern RESERVED = Pattern.compile("[()\\[\\],:;\\s']");
 
   private String label;
-  private Float length;
+  private Double length;
   private List<T> children;
 
   public String getLabel() {
@@ -25,11 +24,11 @@ public abstract class Node<T extends Node<T>> {
     this.label = label;
   }
 
-  public Float getLength() {
+  public Double getLength() {
     return length;
   }
 
-  public void setLength(Float length) {
+  public void setLength(Double length) {
     this.length = length;
   }
 
@@ -39,6 +38,13 @@ public abstract class Node<T extends Node<T>> {
 
   public void setChildren(List<T> children) {
     this.children = children;
+  }
+
+  public void addChild(T child) {
+    if (children == null) {
+      children = new ArrayList<>();
+    }
+    children.add(child);
   }
 
   public boolean hasLength() {
@@ -80,24 +86,20 @@ public abstract class Node<T extends Node<T>> {
   abstract void writeComments(Writer w) throws IOException;
 
   /**
-   * Escapes or quotes a string to be Newick compliant.
+   * Potentially quotes a string to be Newick compliant.
    * If the string contains characters reserved by the Newick grammar it will be quoted in single quotes and any existing quotes escaped by doubling them.
-   * If the only reserved character contained in the value is whitespace, it will be replaced by underscores instead without quoting.
    */
   public static String escape(String value) {
-    if (value != null) {
+    if (value == null) {
+      return "";
+
+    } else {
       // need for quoting?
       if (RESERVED.matcher(value).find()) {
         return "'" + QUOTE.matcher(value).replaceAll("''") + "'";
-
-      } else {
-        var ws = WHITESPACE.matcher(value);
-        if (ws.find()) {
-          return ws.replaceAll(WS_REPLACEMENT);
-        }
       }
+      return value;
     }
-    return value;
   }
 
   @Override

@@ -63,7 +63,7 @@ public class NodeFactory {
         n.setComment(ctx.comment().getText());
       }
       if (ctx.NUMBER() != null) {
-        n.setLength(Float.parseFloat(ctx.NUMBER().getText()));
+        n.setLength(Double.parseDouble(ctx.NUMBER().getText()));
       }
       List<SimpleNode> children = ctx.branch()
                                     .stream()
