@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NHXParser extends ParserBase<NHXNode> {
-  private static final String START = "&&NHX";
+  public static final String START = "&&NHX";
   private static final Pattern COMMENTS = Pattern.compile(":([A-Z][A-Za-z]*)=(.*?)(?=:[A-Z][A-Za-z]*=|$)");
 
   public NHXParser(InputStream stream) {

@@ -155,6 +155,17 @@ public class NHXNode extends XNode<NHXNode> {
   private Integer subtreeNeighbors;
   private Integer superOrthologous;
 
+  public NHXNode() {
+  }
+
+  public NHXNode(String label) {
+    super(label);
+  }
+
+  public NHXNode(String label, Double length) {
+    super(label, length);
+  }
+
   public String getGeneName() {
     return geneName;
   }

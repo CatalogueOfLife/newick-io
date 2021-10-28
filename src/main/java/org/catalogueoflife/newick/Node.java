@@ -11,11 +11,23 @@ public abstract class Node<T extends Node<T>> {
   private static final String WS_REPLACEMENT = "_";
   static final Pattern QUOTE = Pattern.compile("'");
   private static final Pattern WHITESPACE = Pattern.compile("\\s");
-  private static final Pattern RESERVED = Pattern.compile("[()\\[\\],:;\\s']");
+  private static final Pattern RESERVED = Pattern.compile("[()\\[\\],:;']");
 
   private String label;
   private Double length;
   private List<T> children;
+
+  public Node() {
+  }
+
+  public Node(String label) {
+    this.label = label;
+  }
+
+  public Node(String label, Double length) {
+    this.label = label;
+    this.length = length;
+  }
 
   public String getLabel() {
     return label;

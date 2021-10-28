@@ -10,6 +10,22 @@ public class SimpleNode extends Node<SimpleNode> {
 
   private String comment;
 
+  public SimpleNode() {
+  }
+
+  public SimpleNode(String label) {
+    super(label);
+  }
+
+  public SimpleNode(String label, Double length) {
+    super(label, length);
+  }
+
+  public SimpleNode(String label, Double length, String comment) {
+    super(label, length);
+    this.comment = comment;
+  }
+
   public String getComment() {
     return comment;
   }

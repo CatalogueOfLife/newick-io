@@ -6,6 +6,17 @@ import java.util.List;
 
 public abstract class XNode<T extends XNode<T>> extends Node<T> {
 
+  public XNode() {
+  }
+
+  public XNode(String label) {
+    super(label);
+  }
+
+  public XNode(String label, Double length) {
+    super(label, length);
+  }
+
   abstract public String getValue(String key);
 
   abstract public void setValue(String key, String value);
@@ -17,7 +28,8 @@ public abstract class XNode<T extends XNode<T>> extends Node<T> {
       String val = getValue(key);
       if (val != null) {
         if (!started) {
-          w.append("[&&NHX");
+          w.append("[");
+          w.append(NHXParser.START);
           started=true;
         }
         w.append(":");
