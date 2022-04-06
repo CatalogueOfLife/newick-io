@@ -4,7 +4,7 @@
 
   <artifactId>newick-io</artifactId>
   <groupId>org.catalogueoflife</groupId>
-  <version>1.0.5</version>
+  <version>1.0.6-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Newick IO</name>
@@ -14,7 +14,7 @@
     <connection>scm:git:git@github.com:CatalogueOfLife/newick-io.git</connection>
     <url>https://github.com/CatalogueOfLife/newick-io</url>
     <developerConnection>scm:git:git@github.com:CatalogueOfLife/newick-io.git</developerConnection>
-    <tag>newick-io-1.0.5</tag>
+    <tag>HEAD</tag>
   </scm>
 
 
