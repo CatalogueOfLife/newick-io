@@ -17,7 +17,6 @@
     <tag>HEAD</tag>
   </scm>
 
-
   <properties>
     <!-- build settings -->
     <minimumMavenVersion>3.3</minimumMavenVersion>
@@ -166,17 +165,17 @@
       </plugins>
     </pluginManagement>
     <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <release>${jdkLevel}</release>
-            <showDeprecation>true</showDeprecation>
-            <showWarnings>true</showWarnings>
-            <source>11</source>
-            <target>11</target>
-          </configuration>
-        </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <release>${jdkLevel}</release>
+          <showDeprecation>true</showDeprecation>
+          <showWarnings>true</showWarnings>
+          <source>11</source>
+          <target>11</target>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -186,76 +185,76 @@
           <additionalJOption>-Xdoclint:none</additionalJOption>
         </configuration>
       </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>enforce-maven-3</id>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-              <configuration>
-                <rules>
-                  <requireMavenVersion>
-                    <version>[${minimumMavenVersion},)</version>
-                  </requireMavenVersion>
-                  <requireJavaVersion>
-                    <version>[${jdkLevel},)</version>
-                  </requireJavaVersion>
-                </rules>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <!-- Note: http://jira.codehaus.org/browse/MSOURCES-45, http://jira.codehaus.org/browse/MSOURCES-50 -->
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>attach-sources</id>
-              <phase>package</phase>
-              <goals>
-                <goal>jar-no-fork</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <configuration>
-            <useSystemClassLoader>false</useSystemClassLoader>
-            <!-- Use a new forked process for each test See https://maven.apache.org/surefire/maven-surefire-plugin/examples/fork-options-and-parallel-execution.html -->
-            <forkCount>1</forkCount>
-            <reuseForks>false</reuseForks>
-            <redirectTestOutputToFile>true</redirectTestOutputToFile>
-            <!-- use default JVM settings <argLine>-Xmx256m</argLine> -->
-            <runOrder>random</runOrder>
-            <argLine>
-              --illegal-access=permit
-            </argLine>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-maven-3</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>[${minimumMavenVersion},)</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>[${jdkLevel},)</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <!-- Note: http://jira.codehaus.org/browse/MSOURCES-45, http://jira.codehaus.org/browse/MSOURCES-50 -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <useSystemClassLoader>false</useSystemClassLoader>
+          <!-- Use a new forked process for each test See https://maven.apache.org/surefire/maven-surefire-plugin/examples/fork-options-and-parallel-execution.html -->
+          <forkCount>1</forkCount>
+          <reuseForks>false</reuseForks>
+          <redirectTestOutputToFile>true</redirectTestOutputToFile>
+          <!-- use default JVM settings <argLine>-Xmx256m</argLine> -->
+          <runOrder>random</runOrder>
+          <argLine>
+            --illegal-access=permit
+          </argLine>
 
-            <includes>
-              <!-- include regular unit tests -->
-              <include>**/*Test.java</include>
-            </includes>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <configuration>
-            <goals>deploy</goals>
-            <preparationGoals>install</preparationGoals>
-            <resume>false</resume>
-            <useReleaseProfile>true</useReleaseProfile>
-            <releaseProfiles>release</releaseProfiles>
-            <tagNameFormat>${project.artifactId}-@{project.version}</tagNameFormat>
-          </configuration>
-        </plugin>
-      </plugins>
+          <includes>
+            <!-- include regular unit tests -->
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <goals>deploy</goals>
+          <preparationGoals>install</preparationGoals>
+          <resume>false</resume>
+          <useReleaseProfile>true</useReleaseProfile>
+          <releaseProfiles>gbif-release</releaseProfiles>
+          <tagNameFormat>${project.artifactId}-@{project.version}</tagNameFormat>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
   <reporting>
@@ -297,7 +296,7 @@
   <profiles>
     <!-- automatically used by the release plugin -->
     <profile>
-      <id>release</id>
+      <id>gbif-release</id>
       <build>
         <plugins>
           <plugin>
