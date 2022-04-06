@@ -66,6 +66,17 @@
     </repository>
   </repositories>
 
+  <distributionManagement>
+    <repository>
+      <id>gbif-release</id>
+      <url>http://repository.gbif.org/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>gbif-snapshot</id>
+      <url>http://repository.gbif.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <build>
     <defaultGoal>install</defaultGoal>
     <resources>
@@ -127,7 +138,6 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>${maven-deploy-plugin.version}</version>
         </plugin>
-
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
