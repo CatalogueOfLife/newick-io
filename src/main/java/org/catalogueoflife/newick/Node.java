@@ -66,6 +66,7 @@ public abstract class Node<T extends Node<T>> {
 
   /**
    * Prints the tree in simple Newick format.
+   * @param w writer to print to
    */
   public void printTree(Writer w) throws IOException {
     print(w);
@@ -101,6 +102,7 @@ public abstract class Node<T extends Node<T>> {
   /**
    * Potentially quotes a string to be Newick compliant.
    * If the string contains characters reserved by the Newick grammar it will be quoted in single quotes and any existing quotes escaped by doubling them.
+   * @param value to escape
    */
   public static String escape(String value) {
     if (value == null) {
