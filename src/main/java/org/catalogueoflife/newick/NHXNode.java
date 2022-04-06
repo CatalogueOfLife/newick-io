@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
  * A node implementation using the New Hampshire eXtended (NHX) format
  * using Newick comments to encode additional key value pairs, e.g. the node id or scientificName.
  * Supported keys are:
+ *
+ * <pre>
  * {@code
  * :GN=	string	gene name	<name>(<sequence>)
  * :AC=	string	sequence accession	<accession>(<sequence>)
@@ -30,7 +32,8 @@ import java.util.stream.Collectors;
  * :O=	integer	orthologous to this external node	n/a
  * :SN=	integer	subtree neighbors	n/a
  * :SO=	integer	super orthologous (no duplications on paths) to this external node	n/a
- * }
+ * }</pre>
+ *
  * See also http://www.phylosoft.org/NHX/
  */
 public class NHXNode extends XNode<NHXNode> {
@@ -105,7 +108,7 @@ public class NHXNode extends XNode<NHXNode> {
   }
 
   /**
-   * rrr.ggg.bbb	integer.integer.integer	color of parent branch {@code <color>(<clade>})
+   * {@code rrr.ggg.bbb	integer.integer.integer	color of parent branch <color>(<clade>})
    */
   public static class RGB {
     static final Pattern RGB = Pattern.compile("^([0-9]{3})\\.([0-9]{3})\\.([0-9]{3})$");
