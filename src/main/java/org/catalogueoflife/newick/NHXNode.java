@@ -12,21 +12,21 @@ import java.util.stream.Collectors;
  * using Newick comments to encode additional key value pairs, e.g. the node id or scientificName.
  * Supported keys are:
  *
- * :GN=	string	gene name	<name>(<sequence>)
- * :AC=	string	sequence accession	<accession>(<sequence>)
- * :ND=	string	node identifier - if this is being used, it has to be unique within each phylogeny	<node_id>(<clade>)
- * :B=	decimal	confidence value for parent branch	<confidence>(<clade>)
+ * :GN=	string	gene name	{@code <name>(<sequence>)}
+ * :AC=	string	sequence accession	{@code <accession>(<sequence>)}
+ * :ND=	string	node identifier - if this is being used, it has to be unique within each phylogeny {@code <node_id>(<clade>})
+ * :B=	decimal	confidence value for parent branch {@code <confidence>(<clade>})
  * :D=	'T', 'F', or '?'	'T' if this node represents a duplication event - 'F' if this node represents a speciation event, '?' if this node represents an unknown event (D= tag should be replaced by Ev= tag)	n/a
- * :E=	string	EC number at this node	<annotation>(<sequence>)
- * :Fu=	string	function at this node	<annotation>(<sequence>)
- * :DS=protein-length>from>to>support>name>from>...	int int int double string int ...	domain structure at this node	<domain_architecture>(<sequence>)
- * :S=	string	species name of the species/phylum at this node	<scientific_name> (<taxonomy>)
- * :T=	integer	taxonomy ID of the species/phylum at this node	<id>(<taxonomy>)
- * :W=	integer	width of parent branch	<width>(<clade>)
- * :C=rrr.ggg.bbb	integer.integer.integer	color of parent branch	<color>(<clade>)
+ * :E=	string	EC number at this node	{@code <annotation>(<sequence>})
+ * :Fu=	string	function at this node	{@code <annotation>(<sequence>})
+ * :DS=protein-length>from>to>support>name>from>...	int int int double string int ...	domain structure at this node	{@code <domain_architecture>(<sequence>})
+ * :S=	string	species name of the species/phylum at this node	{@code <scientific_name> (<taxonomy>})
+ * :T=	integer	taxonomy ID of the species/phylum at this node	{@code <id>(<taxonomy>})
+ * :W=	integer	width of parent branch	{@code <width>(<clade>})
+ * :C=rrr.ggg.bbb	integer.integer.integer	color of parent branch	{@code <color>(<clade>})
  * :Co=	'Y' or 'N'	collapse this node when drawing the tree (default is not to collapse)	n/a
- * :XB=	string	custom data associated with a branch	<property>(<clade>)
- * :XN=	string	custom data associated with a node	<property>(<clade>)
+ * :XB=	string	custom data associated with a branch	{@code <property>(<clade>})
+ * :XN=	string	custom data associated with a node	{@code <property>(<clade>})
  * :O=	integer	orthologous to this external node	n/a
  * :SN=	integer	subtree neighbors	n/a
  * :SO=	integer	super orthologous (no duplications on paths) to this external node	n/a
@@ -105,7 +105,7 @@ public class NHXNode extends XNode<NHXNode> {
   }
 
   /**
-   * rrr.ggg.bbb	integer.integer.integer	color of parent branch	<color>(<clade>)
+   * rrr.ggg.bbb	integer.integer.integer	color of parent branch {@code <color>(<clade>})
    */
   public static class RGB {
     static final Pattern RGB = Pattern.compile("^([0-9]{3})\\.([0-9]{3})\\.([0-9]{3})$");
