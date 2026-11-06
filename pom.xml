@@ -57,11 +57,18 @@
   <repositories>
     <repository>
       <id>gbif-all</id>
-      <url>https://repository.gbif.org/content/groups/gbif</url>
+      <url>https://repository.gbif.org/repository/gbif</url>
+      <!-- the gbif group serves no snapshots since 2026-11-06, they moved to repository-snapshots.gbif.org -->
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </repository>
     <repository>
       <id>gbif-thirdparty</id>
-      <url>https://repository.gbif.org/content/repositories/thirdparty/</url>
+      <url>https://repository.gbif.org/repository/thirdparty/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </repository>
   </repositories>
 
